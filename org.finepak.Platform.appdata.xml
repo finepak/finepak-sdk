@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="runtime">
+    <id>org.finepak.Platform</id>
+    <metadata_license>CC0</metadata_license>
+    <name>finepak Platform</name>
+    <summary>Shared libraries used by finepak applications</summary>
+    <project_group>finepak</project_group>
+</component>

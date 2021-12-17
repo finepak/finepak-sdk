@@ -1,11 +1,11 @@
 build-extension: true
 
-id: org.winepak.Platform.Wine
-branch: 3.10-staging
+id: org.finepak.Platform.Wine
+branch: 6.23-staging
 
-runtime: org.winepak.Platform
-runtime-version: 3.0
-sdk: org.winepak.Sdk
+runtime: org.finepak.Platform
+runtime-version: 6.0
+sdk: org.finepak.Sdk
 
 separate-locales: false
 appstream-compose: false
@@ -32,7 +32,6 @@ modules:
       - --disable-tests
       - --with-x
       - --with-ldap
-      - --with-netapi
       - --without-cups
       - --without-curses
       - --without-capi
@@ -40,6 +39,7 @@ modules:
       - --without-gphoto
       - --without-gsm
       - --without-hal
+      - --without-netapi
       - --without-opencl
       - --without-pcap
       - --without-udev
@@ -49,11 +49,11 @@ modules:
       - /share/applications
     sources:
       - type: archive
-        url: https://dl.winehq.org/wine/source/3.x/wine-3.10.tar.xz
-        sha256: d7505cc79c7cd8950f1a46ecfcc0ae2ecc71717ce85414846264395b1e7ac6b5
+        url: https://dl.winehq.org/wine/source/3.x/wine-6.23.tar.xz
+        sha256: 02b00c6c948b3bab717e1b1e2075a5406b14d138bd2e01fdb1268a93d1c20d51
       - type: archive
-        url: https://github.com/wine-staging/wine-staging/archive/v3.10.tar.gz
-        sha256: 3f44f24dab0d59e08a2395960756a65485f0f5201dde2f8381d680ff235cf22d
+        url: https://github.com/wine-staging/wine-staging/archive/v6.23.tar.gz
+        sha256: fd40c24e00b3da4498f78885a5d3c4a9699790c1de78f6e43ff151432824f2ad
       - type: shell
         commands:
           - ./patches/patchinstall.sh DESTDIR=$(pwd) --all
@@ -67,7 +67,6 @@ modules:
       - --disable-tests
       - --with-x
       - --with-ldap
-      - --with-netapi
       - --without-cups
       - --without-curses
       - --without-capi
@@ -75,6 +74,7 @@ modules:
       - --without-gphoto
       - --without-gsm
       - --without-hal
+      - --without-netapi
       - --without-opencl
       - --without-pcap
       - --without-udev
@@ -85,11 +85,11 @@ modules:
       - /share/applications
     sources:
       - type: archive
-        url: https://dl.winehq.org/wine/source/3.x/wine-3.10.tar.xz
-        sha256: d7505cc79c7cd8950f1a46ecfcc0ae2ecc71717ce85414846264395b1e7ac6b5
+        url: https://dl.winehq.org/wine/source/6.x/wine-6.23.tar.xz
+        sha256: 02b00c6c948b3bab717e1b1e2075a5406b14d138bd2e01fdb1268a93d1c20d51
       - type: archive
-        url: https://github.com/wine-staging/wine-staging/archive/v3.10.tar.gz
-        sha256: 3f44f24dab0d59e08a2395960756a65485f0f5201dde2f8381d680ff235cf22d
+        url: https://github.com/wine-staging/wine-staging/archive/v6.23.tar.gz
+        sha256: fd40c24e00b3da4498f78885a5d3c4a9699790c1de78f6e43ff151432824f2ad
       - type: shell
         commands:
           - ./patches/patchinstall.sh DESTDIR=$(pwd) --all
@@ -97,9 +97,9 @@ modules:
   - name: metainfo
     buildsystem: simple
     build-commands:
-      - install -Dm644 --target-directory=${FLATPAK_DEST}/share/metainfo org.winepak.Platform.Wine.metainfo.xml
-      - appstream-compose --basename=org.winepak.Platform.Wine --prefix=${FLATPAK_DEST} --origin=flatpak org.winepak.Platform.Wine
+      - install -Dm644 --target-directory=${FLATPAK_DEST}/share/metainfo org.finepak.Platform.Wine.metainfo.xml
+      - appstream-compose --basename=org.finepak.Platform.Wine --prefix=${FLATPAK_DEST} --origin=flatpak org.finepak.Platform.Wine
     sources:
       - type: file
-        path: org.winepak.Platform.Wine.metainfo.xml
+        path: org.finepak.Platform.Wine.metainfo.xml
 

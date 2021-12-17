@@ -1,18 +1,18 @@
 build-runtime: true
 
-id: org.winepak.Sdk
-id-platform: org.winepak.Platform
-branch: 3.0
+id: org.finepak.Sdk
+id-platform: org.finepak.Platform
+branch: 6.0
 
 runtime: org.freedesktop.Platform
-runtime-version: 1.6
+runtime-version: 21.08
 sdk: org.freedesktop.Sdk
 
 add-extensions:
-  org.winepak.Platform.Compat32:
+  org.finepak.Platform.Compat32:
     directory: lib/32bit
-    version: 3.0
-    versions: 3.0
+    version: 6.0
+    versions: 6.0
     add-ld-path: lib
     subdirectories: false
     autodelete: false
@@ -30,24 +30,24 @@ add-extensions:
     download-if: active-gl-driver
     enable-if: active-gl-driver
 
-  org.winepak.Platform.Wine:
+  org.finepak.Platform.Wine:
     directory: lib/wine
-    version: 3.0
-    versions: 3.0
+    version: 6.0
+    versions: 6.0
     add-ld-path: lib
     subdirectories: false
     autodelete: false
 
-  org.winepak.Platform.Extension:
+  org.finepak.Platform.Extension:
     directory: lib/extension
-    version: 3.0
+    version: 6.0
     subdirectories: true
     autodelete: true
     no-autodownload: true
 
-  org.winepak.Sdk.Extension:
+  org.finepak.Sdk.Extension:
     directory: lib/sdk
-    version: 3.0
+    version: 6.0
     subdirectories: true
     autodelete: true
     no-autodownload: true
@@ -63,8 +63,8 @@ inherit-extensions:
   - org.freedesktop.Sdk.Extension
 
 finish-args:
-  - --sdk=org.winepak.Sdk//3.0
-  - --runtime=org.winepak.Platform//3.0
+  - --sdk=org.finepak.Sdk//6.0
+  - --runtime=org.finepak.Platform//6.0
   - --allow=multiarch
   - --env=PATH=/app/bin:/app/lib/wine/bin:/app/lib/wine-32bit/bin:/app/lib/32bit/wine:/usr/lib/wine/bin:/usr/lib/wine-32bit/bin:/usr/bin:/usr/lib/32bit/bin
   - --env=XDG_DATA_DIRS=/app/share:/usr/share:/usr/share/runtime/share:/run/host/share
@@ -79,7 +79,7 @@ cleanup-commands:
   # Important for Compat32/32bit/WoW64!
   #
   # The `/usr/libexec/freedesktop-post.sh` is a special script for setting-up
-  # multiple tweaks to a runtime. It's espically critical for winepak as it
+  # multiple tweaks to a runtime. It's espically critical for finepak as it
   # sets-up a `/lib/ld-linux.so.2` symlink to `/app/lib/ld-linux.so.2`.
   # `org.freedesktop.Platform//1.6` creates a number of symlinks in
   # `/usr/lib/extra-links`. This scripts copies those to `/usr/lib` at the end
@@ -90,7 +90,7 @@ cleanup-commands:
   #     sh /path/to/bin/program No such file or directory
   #
   # `org.freedesktop.Platform//1.8` should make this obsolote, but till then
-  # it's critical for winepak to work.
+  # it's critical for finepak to work.
   - /usr/libexec/freedesktop-post.sh
 
 cleanup-platform:
@@ -103,7 +103,7 @@ cleanup-platform-commands:
   # Important for Compat32/32bit/WoW64!
   #
   # The `/usr/libexec/freedesktop-post.sh` is a special script for setting-up
-  # multiple tweaks to a runtime. It's espically critical for winepak as it
+  # multiple tweaks to a runtime. It's espically critical for finepak as it
   # sets-up a `/lib/ld-linux.so.2` symlink to `/app/lib/ld-linux.so.2`.
   # `org.freedesktop.Platform//1.6` creates a number of symlinks in
   # `/usr/lib/extra-links`. This scripts copies those to `/usr/lib` at the end
@@ -114,7 +114,7 @@ cleanup-platform-commands:
   #     sh /path/to/bin/program No such file or directory
   #
   # `org.freedesktop.Platform//1.8` should make this obsolote, but till then
-  # it's critical for winepak to work.
+  # it's critical for finepak to work.
   - /usr/libexec/freedesktop-post.sh
 
 build-options:
@@ -142,8 +142,8 @@ modules:
       # FTP isn't support in flatpak & flatpak-builder so we use he https mirror
       # https://www.openldap.org/software/download/OpenLDAP/openldap-release/
       - type: archive
-        url: https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.4.46.tgz
-        sha256: 9a90dcb86b99ae790ccab93b7585a31fbcbeec8c94bf0f7ab0ca0a87ea0c4b2d
+        url: https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.4.59.tgz
+        sha256: 99f37d6747d88206c470067eda624d5e48c1011e943ec0ab217bae8712e22f34
     modules:
       - name: BDB
         config-opts:
@@ -194,8 +194,8 @@ modules:
       - /share/applications
     sources:
       - type: archive
-        url: https://dl.winehq.org/wine/source/3.0/wine-3.0.1.tar.xz
-        sha256: bad00d7ddac6652795a2ed52ce02a544ff4e891499b29ac71d28d20b8e1d26f3
+        url: https://dl.winehq.org/wine/source/6.0/wine-6.0.2.tar.xz
+        sha256: dfe3c58ac785c07220e28f15b62299d76c24d256a67ad9bffd8aefa67b3dbb70
 
   - name: wine-win32
     only-arches:
@@ -225,40 +225,40 @@ modules:
       - /share/applications
     sources:
       - type: archive
-        url: https://dl.winehq.org/wine/source/3.0/wine-3.0.1.tar.xz
-        sha256: bad00d7ddac6652795a2ed52ce02a544ff4e891499b29ac71d28d20b8e1d26f3
+        url: https://dl.winehq.org/wine/source/6.0/wine-6.0.2.tar.xz
+        sha256: dfe3c58ac785c07220e28f15b62299d76c24d256a67ad9bffd8aefa67b3dbb70
 
   - name: wine-gecko
     buildsystem: simple
     build-commands:
-      - install -D --target-directory=/usr/share/wine/gecko/ wine_gecko-*.msi
+      - install -D --target-directory=/usr/share/wine/gecko/ wine-gecko-*.msi
     no-make-install: true
     sources:
       - type: file
         only-arches:
           - x86_64
-        url: https://dl.winehq.org/wine/wine-gecko/2.47/wine_gecko-2.47-x86_64.msi
-        sha256: c565ea25e50ea953937d4ab01299e4306da4a556946327d253ea9b28357e4a7d
+        url: https://dl.winehq.org/wine/wine-gecko/2.47.2/wine-gecko-2.47.2-x86_64.msi
+        sha256: 0596761024823ff3c21f13e1cd5cd3e89dccc698294d62974d8930aeda86ce45
       - type: file
-        url: https://dl.winehq.org/wine/wine-gecko/2.47/wine_gecko-2.47-x86.msi
-        sha256: 3b8a361f5d63952d21caafd74e849a774994822fb96c5922b01d554f1677643a
+        url: https://dl.winehq.org/wine/wine-gecko/2.47.2/wine-gecko-2.47.2-x86.msi
+        sha256: e520ce7336cd420cd09c91337d87e74bb420300fd5cbc6f724c1802766b6a61d
 
   - name: wine-mono
     buildsystem: simple
     build-commands:
-      - install -D --target-directory=/usr/share/wine/mono/ wine-mono-*.msi
+      - install -D --target-directory=/usr/share/wine/mono/ wine-mono-*-x86.msi
     no-make-install: true
     sources:
     - type: file
-      url: https://dl.winehq.org/wine/wine-mono/4.7.1/wine-mono-4.7.1.msi
-      sha256: 2c8d5db7f833c3413b2519991f5af1f433d59a927564ec6f38a3f1f8b2c629aa
+      url: https://dl.winehq.org/wine/wine-mono/6.4.0/wine-mono-6.4.0-x86.msi
+      sha256: db8b85f3b910590f61adbfa0005a995d613e299a1cc73d00553d70dc81010e36
 
   - name: cabextract
     buildsystem: autotools
     sources:
       - type: archive
-        url: https://www.cabextract.org.uk/cabextract-1.6.tar.gz
-        sha256: cee661b56555350d26943c5e127fc75dd290b7f75689d5ebc1f04957c4af55fb
+        url: https://www.cabextract.org.uk/cabextract-1.9.1.tar.gz
+        sha256: afc253673c8ef316b4d5c29cc4aa8445844bee14afffbe092ee9469405851ca7
 
   - name: winetricks
     buildsystem: simple
@@ -267,20 +267,20 @@ modules:
       - make install
     sources:
       - type: archive
-        url: https://github.com/Winetricks/winetricks/archive/20180513.tar.gz
-        sha256: 626aff64e3d93698704b0b668225d5504fd8ef556e3834f569058deaeafada8e
+        url: https://github.com/Winetricks/winetricks/archive/20210825.tar.gz
+        sha256: bac77918ef4d58c6465a1043fd996d09c3ee2c5a07f56ed089c4c65a71881277
 
   - name: metainfo
     buildsystem: simple
     build-commands:
       - mkdir -p /usr/share/appdata
-      - install org.winepak.Platform.appdata.xml /usr/share/appdata
-      - install org.winepak.Sdk.appdata.xml /usr/share/appdata
-      - appstream-compose --basename=org.winepak.Platform --prefix=/usr --origin=flatpak org.winepak.Platform
-      - appstream-compose --basename=org.winepak.Sdk --prefix=/usr --origin=flatpak org.winepak.Sdk
+      - install org.finepak.Platform.appdata.xml /usr/share/appdata
+      - install org.finepak.Sdk.appdata.xml /usr/share/appdata
+      - appstream-compose --basename=org.finepak.Platform --prefix=/usr --origin=flatpak org.finepak.Platform
+      - appstream-compose --basename=org.finepak.Sdk --prefix=/usr --origin=flatpak org.finepak.Sdk
     sources:
       - type: file
-        path: org.winepak.Sdk.appdata.xml
+        path: org.finepak.Sdk.appdata.xml
       - type: file
-        path: org.winepak.Platform.appdata.xml
+        path: org.finepak.Platform.appdata.xml
 
